@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { cors } from 'npm:hono/cors'
 import * as v from '@valibot/valibot'
 import { vValidator } from '@hono/valibot-validator'
 import { Relay } from 'nostr-tools/relay'
@@ -14,7 +15,7 @@ const POST_SCHEMA = v.object({
   pubkey: v.string()
 })
 
-const app = new Hono().post('/post', vValidator('json', POST_SCHEMA), vValidator('query', v.object({
+const app = new Hono().use('*', cors({ origin: '*' })).post('/post', vValidator('json', POST_SCHEMA), vValidator('query', v.object({
   url: v.string()
 })), async c => {
   const { url } = c.req.valid('query')
@@ -24,6 +25,7 @@ const app = new Hono().post('/post', vValidator('json', POST_SCHEMA), vValidator
   
   const res = await relay.publish(evt)
 
+  c.header('
   return c.text(res)
 })
 
