@@ -25,7 +25,6 @@ const app = new Hono().use('*', cors({ origin: '*' })).post('/post', vValidator(
   
   const res = await relay.publish(evt)
 
-  c.header('
   return c.text(res)
 })
 
