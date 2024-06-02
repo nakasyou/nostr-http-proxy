@@ -1,0 +1,17 @@
+{
+  "tasks": {
+    "dev": "deno run -A --watch main.ts",
+    "demo": "deno run -A --watch demo.ts"
+  },
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true
+  },
+  "imports": {
+    "hono": "npm:hono@^4.4.2",
+    "@hono/valibot-validator": "npm:@hono/valibot-validator@^0.2.5",
+    "@noble/hashes": "npm:@noble/hashes@^1.4.0",
+    "@valibot/valibot": "jsr:@valibot/valibot@^0.30.0",
+    "nostr-tools": "npm:nostr-tools@^2.7.0"
+  }
+}
